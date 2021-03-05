@@ -2,12 +2,13 @@ package com.upgrad.hirewheels.entities;
 
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Location {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private int locationId;
     @Column(length = 50,nullable = false)
     private String locationName;
@@ -15,6 +16,41 @@ public class Location {
     private String address;
     @Column(length = 10,nullable = false)
     private int pincode;
+
+    @OneToMany(mappedBy = "location", fetch = FetchType.EAGER)
+    private Set<Booking> bookings;
+
+    @OneToMany(mappedBy = "location", fetch = FetchType.EAGER)
+    private Set<Vehicle> vehicles;
+
+
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    private City city;
+
+    public Set<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    public void setVehicles(Set<Vehicle> vehicles) {
+        this.vehicles = vehicles;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(Set<Booking> bookings) {
+        this.bookings = bookings;
+    }
 
     public int getLocationId() {
         return locationId;
@@ -55,6 +91,9 @@ public class Location {
                 ", locationName='" + locationName + '\'' +
                 ", address='" + address + '\'' +
                 ", pincode=" + pincode +
+               // ", bookings=" + bookings +
+               // ", vehicles=" + vehicles +
+                ", city=" + city +
                 '}';
     }
 }

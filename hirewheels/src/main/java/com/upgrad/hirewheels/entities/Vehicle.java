@@ -3,26 +3,58 @@ package com.upgrad.hirewheels.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Vehicle {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private  int vehicleId;
     @Column(name="vehicle_model", length =50,nullable = false)
     private String vehicleModel;
-    @Column(name="vehicle_number", length =10, nullable = false)
+    @Column(name="vehicle_number", length =10,nullable = false)
     private long vehicleNumber;
-    @Column(name = "color", length =50, nullable = false)
+    @Column(name = "color", length = 50,nullable = false)
     private String color;
-    @Column(name = "location_id", length = 10,nullable = false)
-    private int locationId;
-    @Column(name = "fuel_type_id", length = 10,nullable = false)
-    private int fuelTypeId;
     @Column(nullable = false)
     private  boolean availabilityStatus;
     @Column(length = 500)
     private String vehicleImgUrl;
+
+    @OneToMany(mappedBy = "vehicle", fetch = FetchType.EAGER)
+    private Set<Booking> bookings;
+
+    @ManyToOne
+    @JoinColumn(name = "fuel_type")
+    private FuelType fuelType;
+
+    @ManyToOne
+    @JoinColumn(name = "location_id")
+    private Location location;
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public FuelType getFuelType() {
+        return fuelType;
+    }
+
+    public void setFuelType(FuelType fuelType) {
+        this.fuelType = fuelType;
+    }
+
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(Set<Booking> bookings) {
+        this.bookings = bookings;
+    }
 
     public int getVehicleId() {
         return vehicleId;
@@ -56,21 +88,7 @@ public class Vehicle {
         this.color = color;
     }
 
-    public int getLocationId() {
-        return locationId;
-    }
 
-    public void setLocationId(int locationId) {
-        this.locationId = locationId;
-    }
-
-    public int getFuelTypeId() {
-        return fuelTypeId;
-    }
-
-    public void setFuelTypeId(int fuelTypeId) {
-        this.fuelTypeId = fuelTypeId;
-    }
 
     public boolean isAvailabilityStatus() {
         return availabilityStatus;
@@ -95,10 +113,11 @@ public class Vehicle {
                 ", vehicleModel='" + vehicleModel + '\'' +
                 ", vehicleNumber=" + vehicleNumber +
                 ", color='" + color + '\'' +
-                ", locationId=" + locationId +
-                ", fuelTypeId=" + fuelTypeId +
                 ", availabilityStatus=" + availabilityStatus +
                 ", vehicleImgUrl='" + vehicleImgUrl + '\'' +
+               // ", bookings=" + bookings +
+                ", fuelType=" + fuelType +
+                ", location=" + location +
                 '}';
     }
 }

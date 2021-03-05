@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 @Entity
 public class Booking {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private int bookingId;
     @Column(nullable = false)
     private LocalDateTime bookingDate;
@@ -17,6 +17,42 @@ public class Booking {
     private LocalDateTime pickupDate;
     @Column(nullable = false)
     private int amount;
+
+    @ManyToOne
+    @JoinColumn(name = "location_id",nullable = false)
+    private Location location;
+
+    @ManyToOne
+    @JoinColumn(name = "vehicle_id",nullable = false)
+    private Vehicle vehicle;
+
+    @ManyToOne
+    @JoinColumn(name = "users")
+    private Users users;
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
+    }
+
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 
     public int getBookingId() {
         return bookingId;
@@ -62,10 +98,13 @@ public class Booking {
     public String toString() {
         return "Booking{" +
                 "bookingId=" + bookingId +
-                ", pickupDate='" + pickupDate + '\'' +
-                ", dropoffDate='" + dropoffDate + '\'' +
-                ", bookingDate='" + bookingDate + '\'' +
+                ", bookingDate=" + bookingDate +
+                ", dropoffDate=" + dropoffDate +
+                ", pickupDate=" + pickupDate +
                 ", amount=" + amount +
+                ", location=" + location +
+                ", vehicle=" + vehicle +
+                ", users=" + users +
                 '}';
     }
 }

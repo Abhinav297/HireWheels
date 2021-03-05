@@ -2,11 +2,12 @@ package com.upgrad.hirewheels.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Users {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue
     private int userId;
     @Column(name = "first_name", length = 50, nullable = false)
     private String firstName;
@@ -20,6 +21,30 @@ public class Users {
     private long mobileNo;
     @Column(length = 10)
     private int walletMoney;
+
+
+    @OneToMany(mappedBy = "users",fetch = FetchType.EAGER)
+    private Set<Booking> bookings;
+
+    @ManyToOne
+    @JoinColumn(name = "role")
+    private Role role;
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(Set<Booking> bookings) {
+        this.bookings = bookings;
+    }
 
     public int getUserId() {
         return userId;
@@ -87,6 +112,8 @@ public class Users {
                 ", email='" + email + '\'' +
                 ", mobileNo=" + mobileNo +
                 ", walletMoney=" + walletMoney +
+                //", bookings=" + bookings +
+                ", role=" + role +
                 '}';
     }
 }

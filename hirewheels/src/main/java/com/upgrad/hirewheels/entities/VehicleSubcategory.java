@@ -14,6 +14,7 @@ public class VehicleSubcategory {
     @Column(nullable = false,unique = true)
     private double pricePerDay;
 
+
     public int getVehicleSubcategoryId() {
         return vehicleSubcategoryId;
     }

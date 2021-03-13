@@ -17,13 +17,16 @@ public class Role {
     private String roleName;
 
     @OneToMany(mappedBy = "role",fetch = FetchType.EAGER)
-    private Set<Users> users;
+    private Set<User> users;
 
-    public Set<Users> getUsers() {
+    public Role() {
+    }
+
+    public Set<User> getUser() {
         return users;
     }
 
-    public void setUsers(Set<Users> users) {
+    public void setUser(Set<User> users) {
         this.users = users;
     }
 
@@ -48,7 +51,7 @@ public class Role {
         return "Role{" +
                 "roleId=" + roleId +
                 ", roleName='" + roleName + '\'' +
-               // ", users=" + users +
+                // ", users=" + users +
                 '}';
     }
 }

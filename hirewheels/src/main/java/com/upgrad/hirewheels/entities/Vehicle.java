@@ -25,12 +25,27 @@ public class Vehicle {
     private Set<Booking> bookings;
 
     @ManyToOne
-    @JoinColumn(name = "fuel_type")
+    @JoinColumn(name = "fuel_type",nullable = false)
     private FuelType fuelType;
 
     @ManyToOne
-    @JoinColumn(name = "location_id")
+    @JoinColumn(name = "location_id",nullable = false)
     private Location location;
+
+    @ManyToOne
+    @JoinColumn(name = "vehicle_sub_category",nullable = false)
+    private VehicleSubCategory vehicleSubCategory;
+
+    public Vehicle() {
+    }
+
+    public VehicleSubCategory getVehicleSubCategory() {
+        return vehicleSubCategory;
+    }
+
+    public void setVehicleSubCategory(VehicleSubCategory vehicleSubCategory) {
+        this.vehicleSubCategory = vehicleSubCategory;
+    }
 
     public Location getLocation() {
         return location;
@@ -115,7 +130,7 @@ public class Vehicle {
                 ", color='" + color + '\'' +
                 ", availabilityStatus=" + availabilityStatus +
                 ", vehicleImgUrl='" + vehicleImgUrl + '\'' +
-               // ", bookings=" + bookings +
+                // ", bookings=" + bookings +
                 ", fuelType=" + fuelType +
                 ", location=" + location +
                 '}';

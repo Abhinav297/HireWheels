@@ -12,30 +12,33 @@ public class Booking {
     @Column(nullable = false)
     private LocalDateTime bookingDate;
     @Column(nullable = false)
-    private LocalDateTime dropoffDate;
+    private LocalDateTime dropOffDate;
     @Column(nullable = false)
     private LocalDateTime pickupDate;
     @Column(nullable = false)
     private int amount;
 
     @ManyToOne
-    @JoinColumn(name = "location_id",nullable = false)
+    @JoinColumn(name = "location_id")
     private Location location;
 
     @ManyToOne
-    @JoinColumn(name = "vehicle_id",nullable = false)
+    @JoinColumn(name = "vehicle_id")
     private Vehicle vehicle;
 
     @ManyToOne
-    @JoinColumn(name = "users")
-    private Users users;
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    public Users getUsers() {
-        return users;
+    public Booking() {
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Vehicle getVehicle() {
@@ -70,12 +73,12 @@ public class Booking {
         this.pickupDate = pickupDate;
     }
 
-    public LocalDateTime getDropoffDate() {
-        return dropoffDate;
+    public LocalDateTime getDropOffDate() {
+        return dropOffDate;
     }
 
-    public void setDropoffDate(LocalDateTime dropoffDate) {
-        this.dropoffDate = dropoffDate;
+    public void setDropOffDate(LocalDateTime dropoffDate) {
+        this.dropOffDate = dropoffDate;
     }
 
     public LocalDateTime getBookingDate() {
@@ -99,12 +102,12 @@ public class Booking {
         return "Booking{" +
                 "bookingId=" + bookingId +
                 ", bookingDate=" + bookingDate +
-                ", dropoffDate=" + dropoffDate +
+                ", dropoffDate=" + dropOffDate +
                 ", pickupDate=" + pickupDate +
                 ", amount=" + amount +
                 ", location=" + location +
                 ", vehicle=" + vehicle +
-                ", users=" + users +
+                ", user=" + user +
                 '}';
     }
 }

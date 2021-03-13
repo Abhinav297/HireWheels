@@ -12,6 +12,14 @@ public class VehicleCategory {
     @Column(length = 50,nullable = false,unique = true)
     private  String VehicleCategoryName;
 
+    public VehicleCategory() {
+    }
+
+    public VehicleCategory(int vehicleCategoryId, String vehicleCategoryName) {
+        this.vehicleCategoryId = vehicleCategoryId;
+        VehicleCategoryName = vehicleCategoryName;
+    }
+
     public int getVehicleCategoryId() {
         return vehicleCategoryId;
     }

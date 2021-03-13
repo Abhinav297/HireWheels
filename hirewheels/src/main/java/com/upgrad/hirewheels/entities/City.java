@@ -21,6 +21,14 @@ public class City {
         return locations;
     }
 
+    public City() {
+    }
+
+    public City(int cityId, String cityName) {
+        this.cityId = cityId;
+        this.cityName = cityName;
+    }
+
     public void setLocations(Set<Location> locations) {
         this.locations = locations;
     }

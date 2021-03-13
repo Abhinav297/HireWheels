@@ -15,8 +15,16 @@ public class FuelType {
     @Column(length = 50,nullable = false,unique = true)
     private String fuelType;
 
-    @OneToMany(mappedBy = "fuelType")
+    @OneToMany(mappedBy = "fuelType",fetch = FetchType.EAGER)
     private Set<Vehicle> vehicles;
+
+    public FuelType(int fuelTypeId, String fuelType) {
+        this.fuelTypeId = fuelTypeId;
+        this.fuelType = fuelType;
+    }
+
+    public FuelType() {
+    }
 
     public Set<Vehicle> getVehicles() {
         return vehicles;
@@ -47,7 +55,7 @@ public class FuelType {
         return "FuelType{" +
                 "fuelTypeId=" + fuelTypeId +
                 ", fuelType='" + fuelType + '\'' +
-               // ", vehicles=" + vehicles +
+                // ", vehicles=" + vehicles +
                 '}';
     }
 }

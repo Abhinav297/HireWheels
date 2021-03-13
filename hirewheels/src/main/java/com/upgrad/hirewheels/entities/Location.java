@@ -25,8 +25,19 @@ public class Location {
 
 
     @ManyToOne
-    @JoinColumn(name = "city_id")
+    @JoinColumn(name = "city_id",nullable = false)
     private City city;
+
+    public Location() {
+    }
+
+    public Location(int locationId, String locationName, String address, int pincode, City city) {
+        this.locationId = locationId;
+        this.locationName = locationName;
+        this.address = address;
+        this.pincode = pincode;
+        this.city = city;
+    }
 
     public Set<Vehicle> getVehicles() {
         return vehicles;
@@ -91,8 +102,8 @@ public class Location {
                 ", locationName='" + locationName + '\'' +
                 ", address='" + address + '\'' +
                 ", pincode=" + pincode +
-               // ", bookings=" + bookings +
-               // ", vehicles=" + vehicles +
+                // ", bookings=" + bookings +
+                // ", vehicles=" + vehicles +
                 ", city=" + city +
                 '}';
     }

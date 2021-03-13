@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-public class Users {
+public class User {
     @Id
     @GeneratedValue
     private int userId;
@@ -22,8 +22,10 @@ public class Users {
     @Column(length = 10)
     private int walletMoney;
 
+    public User() {
+    }
 
-    @OneToMany(mappedBy = "users",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user",fetch = FetchType.EAGER)
     private Set<Booking> bookings;
 
     @ManyToOne

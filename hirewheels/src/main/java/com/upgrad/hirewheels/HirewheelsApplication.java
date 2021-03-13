@@ -4,9 +4,12 @@ import com.upgrad.hirewheels.dao.*;
 import com.upgrad.hirewheels.entities.*;
 import com.upgrad.hirewheels.exceptions.UserAlreadyExistsException;
 import com.upgrad.hirewheels.services.*;
+import org.modelmapper.ModelMapper;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -30,6 +33,10 @@ public class HirewheelsApplication {
 		VehicleService vehicleService = context.getBean(VehicleService.class);
 		InitService initService = context.getBean(InitService.class);
 		initService.start();
+
+
+
+
 
 
 		Role role1 = new Role();
@@ -171,6 +178,16 @@ public class HirewheelsApplication {
 		System.out.println("available vehicle");
 		System.out.println(vehicleService.getAvailableVehicles(booking));
 
+
+
+
+
+
+	}
+
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
 	}
 	}
 

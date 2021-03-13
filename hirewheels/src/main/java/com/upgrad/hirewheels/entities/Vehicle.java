@@ -39,6 +39,19 @@ public class Vehicle {
     public Vehicle() {
     }
 
+    public Vehicle(int vehicleId, String vehicleModel, long vehicleNumber, String color, boolean availabilityStatus, String vehicleImgUrl, Set<Booking> bookings, FuelType fuelType, Location location, VehicleSubCategory vehicleSubCategory) {
+        this.vehicleId = vehicleId;
+        this.vehicleModel = vehicleModel;
+        this.vehicleNumber = vehicleNumber;
+        this.color = color;
+        this.availabilityStatus = availabilityStatus;
+        this.vehicleImgUrl = vehicleImgUrl;
+        this.bookings = bookings;
+        this.fuelType = fuelType;
+        this.location = location;
+        this.vehicleSubCategory = vehicleSubCategory;
+    }
+
     public VehicleSubCategory getVehicleSubCategory() {
         return vehicleSubCategory;
     }

@@ -4,6 +4,7 @@ import com.upgrad.hirewheels.dao.BookingDao;
 import com.upgrad.hirewheels.dao.VehicleDao;
 import com.upgrad.hirewheels.entities.Booking;
 import com.upgrad.hirewheels.entities.Vehicle;
+import com.upgrad.hirewheels.exceptions.VehicleDetailsNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +36,10 @@ public class VehicleServiceImpl implements VehicleService{
             }
         }
         return vehicles;
+    }
+
+    public Vehicle getVehicleById(int id) throws VehicleDetailsNotFoundException {
+        return vehicleDao.findById(id).get();
     }
 
     public List<Vehicle> getAvailableVehicle(int categoryId, LocalDateTime pickUpDate, LocalDateTime dropDate, int locationId) {

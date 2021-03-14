@@ -3,6 +3,7 @@ package com.upgrad.hirewheels.services;
 import com.upgrad.hirewheels.dao.UserDao;
 import com.upgrad.hirewheels.entities.User;
 import com.upgrad.hirewheels.exceptions.UserAlreadyExistsException;
+import com.upgrad.hirewheels.exceptions.UserDetailsNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +34,10 @@ public class UserServiceImpl implements UserService{
             throw new Exception("Unauthorized User");
         }
         return userDao.findByEmail(emailId);
+    }
+
+    @Override
+    public User getUserByID(int id) throws UserDetailsNotFoundException {
+        return userDao.findById(id).get();
     }
 }
